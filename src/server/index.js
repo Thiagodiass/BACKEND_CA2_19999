@@ -30,57 +30,52 @@ server.use(bodyParser.json());
 
 // DEFINE ENDPOINTS
 
-// retrieve all user objects from DB
+// retrieve all prisoners objects from DB
 server.get('/api/General', (req, res) => {
   db.collection('General').find().toArray((err, result) => {
     if (err) throw err;
-
-    console.log(result);
+    // send the result
     res.send(result);
   });
 });
 
-// retrieve user with specific ID from DB
+// retrieve prisoners with specific ID from DB
 server.get('/api/General/:id', (req, res) => {
   db.collection('General').findOne({_id: new ObjectID(req.params.id) }, (err, result) => {
     if (err) throw err;
-
-    console.log(result);
+    // send the result
     res.send(result);
   });
 });
 
-// retrieve bosses with specific name from DB 
+// retrieve prisoners with specific name from DB 
 server.get('/api/GeneralInf/:firstName', (req, res) => {
   db.collection('General').find({firstName: req.params.firstName }).toArray((err, result) => {
     if (err) throw err;
-
-    console.log(result);
+    // send the result
     res.send(result);
   });
 });
 
-// delete user with specific ID from DB
+// delete prisoner with specific ID from DB
 server.delete('/api/General', (req, res) => {
   db.collection('General').deleteOne( {_id: new ObjectID(req.body.id) }, err => {
     if (err) return res.send(err);
-
-    console.log('deleted from database');
+    // send the result
     return res.send({ success: true });
   });
 });
 
-// create new user based on info supplied in request body
+// add prisoner based on info supplied in request body
 server.post('/api/General', (req, res) => {
   db.collection('General').insertOne(req.body, (err, result) => {
     if (err) throw err;
-
-    console.log('created in database');
+    // redirection the page
     res.redirect('/prisoner/');
   });
 });
 
-// update user based on info supplied in request body
+// update prisoner based on info supplied in request body
 server.put('/api/General', (req, res) => {
   // get the ID of the user to be updated
   const id  = req.body._id;
@@ -89,8 +84,7 @@ server.put('/api/General', (req, res) => {
   // find a user matching this ID and update their details
   db.collection('General').updateOne( {_id: new ObjectID(id) }, {$set: req.body}, (err, result) => {
     if (err) throw err;
-
-    console.log('updated in database');
+    // send the result
     return res.send({ success: true });
   });
 });

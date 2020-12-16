@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import the Link component to use for linking prop information
 import { Link } from 'react-router-dom';
 
-// define one single user card component
+// define one single prisoner card component
 class Prisoner extends React.Component {
   render() {
     return (
@@ -24,7 +24,7 @@ class Prisoner extends React.Component {
                 <button className="button is-danger" type="button" onClick={() => {this.props.handleDelete(this.props.id);}}>
                   Delete
                 </button>
-                {/* load the EditUser component via React Router and send the id over to the EditUser component*/}
+                {/* load the Editprisoner component via React Router and send the id over to the EditUser component*/}
                 <Link to={`/edit-prisoner/${this.props.id}`}>
                   <button className="button is-warning" type="button">
                   Edit

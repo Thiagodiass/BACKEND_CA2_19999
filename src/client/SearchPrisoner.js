@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // Use "npm install axios" command to install
 import axios from 'axios';
-
+// Search Prisoner component that will create a new user card
 class SearchPrisoner extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +21,14 @@ class SearchPrisoner extends Component {
       physicalActivity: '',
       picture: ''
     };
-
+    // this binding is necessary to make `this` work in the callback
+    // generally, if you refer to a method without () after it, such as onClick={this.handleClick}, you should bind that method
     this.handleChange = this.handleChange.bind(this);
     
   }
-
+  // once the input boxes are changed, update the state to match the value
   handleChange(event) {
+    // name of the input boxes must match the property names in the state
     const name = event.target.name;
     const value = event.target.value;
 
@@ -35,6 +37,7 @@ class SearchPrisoner extends Component {
 
 
   render() {
+    // remember that the name of the input fields should match the state
     return (
       <div className="divForm has-background-dark">
         <form onSubmit={this.handleSubmit}>
@@ -64,6 +67,7 @@ class SearchPrisoner extends Component {
           </div>
         </form>
         <hr className="hrForm has-background-link"/>
+        
         <footer className="footer has-background-link">
           <div className="content has-text-centered">
             <p className="has-text-white-bis">Prisoner API styled with Bulma.</p>

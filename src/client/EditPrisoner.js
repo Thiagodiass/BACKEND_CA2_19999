@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // Use "npm install axios" command to install
 import axios from 'axios';
-
+// edit Prisoner component that will collect the informations
 class EditPrisoner extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +18,12 @@ class EditPrisoner extends Component {
       physicalActivity: '',
       picture: ''
     };
-
+    // this binding is necessary to make `this` work in the callback
+    // generally, if you refer to a method without () after it, such as onClick={this.handleClick}, you should bind that method
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  // delegating the source to the respective directory
   componentDidMount() {
     axios.get('/api/General/' + this.props.match.params.id)
       .then(response => {
@@ -44,7 +45,9 @@ class EditPrisoner extends Component {
         console.log(error);
       });
   }
+  // once the input boxes are changed, update the state to match the value
   handleChange(event) {
+    // name of the input boxes must match the property names in the state
     const name = event.target.name;
     const value = event.target.value;
 
@@ -52,9 +55,11 @@ class EditPrisoner extends Component {
   }
 
   handleSubmit(event) {
+    // preventDefault() is called on the event when it occurs to prevent a browser reload/refresh
     event.preventDefault();
-
+    // use axios to send a POST request to the server which includes the state information for the new prisoner to be created
     axios.put('/api/General', this.state)
+    // on success go to home
       .then(res => this.props.history.push('/'))
       .catch(error => {
         console.log(error);
@@ -62,6 +67,7 @@ class EditPrisoner extends Component {
   }
 
   render() {
+    // remember that the name of the input fields should match the state
     return (
       <div className="divForm has-background-dark">
         <nav>
@@ -80,7 +86,9 @@ class EditPrisoner extends Component {
         <form onSubmit={this.handleSubmit}>
           
           <hr className="hrForm has-background-link"/>
+          {/* main container for input fields*/}
           <div className="container">
+            {/* FIRST COLUMN*/}
             <div className="columns">
               <div className="column is-half">
                 <div className="field">
@@ -113,8 +121,8 @@ class EditPrisoner extends Component {
                     <input className="input is-small" type="text" name="cell" value={this.state.cell} onChange={this.handleChange} id="form" />
                   </div>
                 </div>
-                
               </div>
+              {/* Second COLUMN*/}
               <div className="column">
                 <div className="field">
                   <label className="label has-text-white-bis"> Zone: </label>
@@ -148,6 +156,7 @@ class EditPrisoner extends Component {
                 </div>
               </div>
             </div>
+            {/* SUBMIT BUTTON*/}
             <input className="button is-danger" type="submit" value="Submit" />
           </div>
         </form>

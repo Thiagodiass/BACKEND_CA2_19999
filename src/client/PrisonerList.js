@@ -28,12 +28,11 @@ class PrisonerList extends Component {
 
   
   componentDidMount() {
-    console.log('component');
     if(undefined === this.props.match.params.firstName) {
-      console.log('if aqui');
+      
       this.updatePrisoners();
     } else {            
-      console.log('ELse');
+      
       axios.get('/api/GeneralInf/' + this.props.match.params.firstName)
         .then(response => {
           this.setState({ General: response.data });
@@ -45,7 +44,6 @@ class PrisonerList extends Component {
     }
   }
 
-  //
   updatePrisoners() {
     // get the users API using axios GET request to the server 
     axios.get('api/General')

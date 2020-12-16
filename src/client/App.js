@@ -15,9 +15,9 @@ const App = () => {
         <Route exact path="/" component={PrisonerList}/>
         {/* SERVERSIDE: Link the routes to components*/}
         <Route exact path="/prisoner/:firstName" component={PrisonerList}/>
-        {/* pass the id through the EditUser component*/}
+        {/* pass the id through the Editprisoner component*/}
         <Route path="/edit-prisoner/:id" component={EditPrisoner}/>
-        {/* set the path to create a new user to CreateUser component*/}
+        {/* set the path to create a new prisoner to Createprisoner component*/}
         <Route path="/create-prisoner" component={CreatePrisoner}/>
         {/* set the path to Search a Prisoner in the database*/}
         <Route path="/search-prisoner" component={SearchPrisoner}/>

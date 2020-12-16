@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // Use "npm install axios" command to install
 import axios from 'axios';
 
-// Create User component that will create a new user card
+// Create Prisoner component that will create a new user card
 class CreatePrisoner extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ class CreatePrisoner extends Component {
     // preventDefault() is called on the event when it occurs to prevent a browser reload/refresh
     event.preventDefault();
 
-    // use axios to send a POST request to the server which includes the state information for the new user to be created
+    // use axios to send a POST request to the server which includes the state information for the new prisoner to be created
     axios.post('/api/General', this.state)
     // on success go to home
       .then(res => this.props.history.push('/'))
